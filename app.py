@@ -122,8 +122,8 @@ else:
                 ax.set_ylabel('Total Yield [kWh]')
                 ax.legend()
                 
-                ax.xaxis.set_major_locator(mdates.DayLocator(interval=1))
-                ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+                ax.xaxis.set_major_locator(mdates.HourLocator(interval=1))
+                ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d %H:%M'))
                 plt.xticks(rotation=45)
                 plt.tight_layout()
                 
