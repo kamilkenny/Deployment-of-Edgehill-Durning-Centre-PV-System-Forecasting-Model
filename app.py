@@ -67,11 +67,15 @@ def preprocess_data(df):
 
     return X_scaled, df.index
 
+# Define adjustment scales for different seasons
+winter_adjustment_scale = 6
+spring_adjustment_scale = 20.0
+summer_adjustment_scale = 16.346
+fall_adjustment_scale = 8.334
+
 # Streamlit UI
 st.image('ss.jpg', caption='Durning Centre 39.02 kWh PV System')
 st.title("An improved photovoltaic power production forecasting using a hybrid model of Bi-LSTM and Transformer Attention Mechanism")
-
-#st.write("Data Preview:", df.head())
 
 start_date = st.date_input('Start date', value=pd.to_datetime('2023-01-01'))
 start_time = st.time_input('Start time', value=pd.to_datetime('2023-01-01 00:00').time(), step=3600)
@@ -103,10 +107,20 @@ else:
                 st.error("Failed to make predictions. Please check the input data and model.")
             else:
                 predictions = predictions.reshape(-1, 1)
-                adjustment_scale = 19.7  
+                
+                # Determine season based on the selected date range
+                if start_datetime.month in [12, 1, 2]:
+                    adjustment_scale = winter_adjustment_scale
+                elif start_datetime.month in [3, 4, 5]:
+                    adjustment_scale = spring_adjustment_scale
+                elif start_datetime.month in [6, 7, 8]:
+                    adjustment_scale = summer_adjustment_scale
+                elif start_datetime.month in [9, 10, 11]:
+                    adjustment_scale = fall_adjustment_scale
+                
                 predictions_adjusted = predictions * adjustment_scale
                 
-                historical_yield_data = np.random.rand(len(predictions_adjusted), 1)  
+                historical_yield_data = np.random.rand(len(predictions_adjusted), 1)
                 scaler_y = MinMaxScaler()
                 scaler_y.fit(historical_yield_data)
                 
@@ -124,6 +138,7 @@ else:
                 
                 ax.xaxis.set_major_locator(mdates.HourLocator(interval=1))
                 ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d %H:%M'))
+
                 plt.xticks(rotation=45)
                 plt.tight_layout()
                 
