@@ -103,7 +103,7 @@ else:
                 st.error("Failed to make predictions. Please check the input data and model.")
             else:
                 predictions = predictions.reshape(-1, 1)
-                adjustment_scale = 22.555  
+                adjustment_scale = 19.7  
                 predictions_adjusted = predictions * adjustment_scale
                 
                 historical_yield_data = np.random.rand(len(predictions_adjusted), 1)  
@@ -122,7 +122,7 @@ else:
                 ax.set_ylabel('Total Yield [kWh]')
                 ax.legend()
                 
-                ax.xaxis.set_major_locator(mdates.DayLocator(interval=2))
+                ax.xaxis.set_major_locator(mdates.DayLocator(interval=1))
                 ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
                 plt.xticks(rotation=45)
                 plt.tight_layout()
