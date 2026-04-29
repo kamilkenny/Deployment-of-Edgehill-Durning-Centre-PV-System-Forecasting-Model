@@ -75,7 +75,7 @@ fall_adjustment_scale = 8.334
 
 # Streamlit UI
 st.image('ss.jpg', caption='Durning Centre 39.02 kWh PV System')
-st.title("An improved photovoltaic power production forecasting using a hybrid model of Bi-LSTM and Transformer Attention Mechanism")
+st.title("An improved photovoltaic power generation forecasting Framework using a hybrid model of Bi-LSTM and Transformer Attention Mechanism")
 
 start_date = st.date_input('Start date', value=pd.to_datetime('2023-01-01'))
 start_time = st.time_input('Start time', value=pd.to_datetime('2023-01-01 00:00').time(), step=3600)
