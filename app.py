@@ -426,12 +426,6 @@ end_datetime = pd.to_datetime(f"{end_date} {end_time}")
 data_min_date = pd.to_datetime(source_df["date"].min())
 data_max_date = pd.to_datetime(source_df["date"].max())
 
-st.caption(
-    f"Available source-data period: "
-    f"{data_min_date.strftime('%d %b %Y')} to "
-    f"{data_max_date.strftime('%d %b %Y')}"
-)
-
 run_prediction = st.button("⚡ Process Prediction")
 
 
