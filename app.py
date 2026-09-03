@@ -673,7 +673,7 @@ st.markdown(
     """
     <div class="app-footer">
         Durning Centre PV Forecasting Platform · Edge Hill University ·
-        Research and analytical demonstration
+        
     </div>
     """,
     unsafe_allow_html=True,
